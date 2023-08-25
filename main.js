@@ -168,7 +168,7 @@ const newGooglePayButton = {
     },
     onGooglePayLoaded: () => {
         newGooglePayButton.__variables.googlePayClient = new google.payments.api.PaymentsClient({
-            environment: 'TEST'
+            environment: window.ctrwowUtils.link.getQueryParameter('isCardTest') === 1 ? 'TEST' : 'PRODUCTION'
         });
         newGooglePayButton.__variables.googlePayClient.isReadyToPay(newGooglePayButton.__variables.googlePayBaseConfiguration)
             .then(function (response) {
